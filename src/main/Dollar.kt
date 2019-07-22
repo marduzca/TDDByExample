@@ -2,6 +2,6 @@ package main
 
 class Dollar(var amount: Int) {
     fun times(multiplier: Int) {
-        amount = 10
+        amount = amount * multiplier
     }
 }
