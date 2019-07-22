@@ -1,6 +1,6 @@
 package main
 
-class Dollar(var amount: Int) {
+data class Dollar(val amount: Int) {
     fun times(multiplier: Int): Dollar {
         return Dollar(amount * multiplier)
     }
