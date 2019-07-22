@@ -1,6 +1,6 @@
 package main
 
-open class Money(val amount: Int) {
+abstract class Money(val amount: Int) {
     override fun equals(any: Any?): Boolean {
         val money = any as Money
         return this.amount == money.amount && this::class.equals(money::class)
@@ -16,11 +16,7 @@ open class Money(val amount: Int) {
         }
     }
 
-    open fun times(multiplier: Int): Money {
-        return Money(0)
-    }
+    abstract fun times(multiplier: Int): Money
 
-    open fun currency(): String {
-        return ""
-    }
+    abstract fun currency(): String
 }
