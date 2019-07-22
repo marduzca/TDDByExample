@@ -1,11 +1,11 @@
 package main
 
-data class Dollar(val amount: Int) {
-    fun times(multiplier: Int): Dollar {
+class Dollar(amount: Int) : Money(amount) {
+    override fun times(multiplier: Int): Money {
         return Dollar(amount * multiplier)
     }
 
-    fun equals(dollar: Dollar): Boolean {
-        return this.amount == dollar.amount
+    override fun currency(): String {
+        return "USD"
     }
 }

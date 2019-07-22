@@ -1,11 +1,11 @@
 package main
 
-data class Franc(val amount: Int) {
-    fun times(multiplier: Int): Franc {
+class Franc(amount: Int) : Money(amount) {
+    override fun times(multiplier: Int): Money {
         return Franc(amount * multiplier)
     }
 
-    fun equals(dollar: Franc): Boolean {
-        return this.amount == dollar.amount
+    override fun currency(): String {
+        return "CHF"
     }
 }
