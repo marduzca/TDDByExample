@@ -2,21 +2,21 @@ package main
 
 open class Money(val amount: Int, private val currency: String) : Expression {
 
-    fun times(multiplier: Int): Money {
+    fun times(multiplier: Int): Expression {
         return Money(amount * multiplier, currency)
     }
 
-    fun plus(addend: Money): Expression {
+    override fun plus(addend: Expression): Expression {
         return Sum(this, addend)
-    }
-
-    fun currency(): String {
-        return currency
     }
 
     override fun reduce(bank: Bank, to: String): Money {
         val rate= bank.rate(this.currency, to)
         return Money(amount / rate!!, to)
+    }
+
+    fun currency(): String {
+        return currency
     }
 
     companion object {
