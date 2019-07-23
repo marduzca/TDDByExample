@@ -23,8 +23,7 @@ class MoneyMainKtTest {
     fun testSimpleAddition() {
         val five = Money.dollar(5)
         val sum: Expression = five.plus(five)
-        val bank = Bank()
-        val reduced: Money = bank.reduce(sum, "USD")
+        val reduced: Money = Bank().reduce(sum,"USD")
         assertEquals(Money.dollar(10), reduced)
     }
 
@@ -41,16 +40,28 @@ class MoneyMainKtTest {
     @Test
     fun testReduceSum() {
         val sum: Expression = Sum(Money.dollar(3), Money.dollar(4))
-        val bank = Bank()
-        val result: Money = bank.reduce(sum, "USD")
+        val result: Money = Bank().reduce(sum, "USD")
 
         assertEquals(Money.dollar(7), result)
     }
 
     @Test
     fun testReduceMoney() {
+        val result: Money = Bank().reduce(Money.dollar(1), "USD")
+
+        assertEquals(Money.dollar(1), result)
+    }
+
+    @Test
+    fun testIdentityRate() {
+        assertEquals(1, Bank().rate("USD", "USD"))
+    }
+
+    @Test
+    fun testReduceMoneyWithDifferentCurrency() {
         val bank = Bank()
-        val result: Money = bank.reduce(Money.dollar(1), "USD")
+        bank.addRate("CHF", "USD", 2)
+        val result: Money = bank.reduce(Money.franc(2), "USD")
 
         assertEquals(Money.dollar(1), result)
     }
