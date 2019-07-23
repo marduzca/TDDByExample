@@ -1,7 +1,5 @@
 package test
 
-import main.Dollar
-import main.Franc
 import main.Money
 import org.junit.Test
 import kotlin.test.assertEquals
