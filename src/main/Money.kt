@@ -2,7 +2,7 @@ package main
 
 open class Money(val amount: Int, private val currency: String) : Expression {
 
-    fun times(multiplier: Int): Expression {
+    override fun times(multiplier: Int): Expression {
         return Money(amount * multiplier, currency)
     }
 
