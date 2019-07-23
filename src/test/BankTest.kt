@@ -6,6 +6,7 @@ import main.Money
 import main.Sum
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import kotlin.test.assertTrue
 
 class BankTest {
 
@@ -38,4 +39,11 @@ class BankTest {
         assertEquals(1, Bank().rate("USD", "USD"))
     }
 
+    @Test
+    fun testAddRate() {
+        val bank = Bank()
+        bank.addRate("CHF", "USD", 2)
+
+        assertTrue(bank.rates.containsKey(Pair("CHF", "USD")))
+    }
 }
