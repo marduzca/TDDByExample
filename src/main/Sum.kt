@@ -13,5 +13,4 @@ class Sum(val augend: Expression, val addend: Expression) : Expression {
     override fun times(multiplier: Int): Expression {
         return Sum(augend.times(multiplier), addend.times(multiplier))
     }
-
 }

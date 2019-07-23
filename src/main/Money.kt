@@ -33,9 +33,4 @@ open class Money(val amount: Int, private val currency: String) : Expression {
         val money = other as Money
         return this.amount == money.amount && this.currency().equals(money.currency())
     }
-
-    override fun toString(): String {
-        return "Money(amount=$amount, currency='$currency')"
-    }
-
 }
