@@ -1,12 +1,14 @@
 package main
 
-abstract class Money(val amount: Int, private val currency: String) {
-    override fun equals(any: Any?): Boolean {
-        val money = any as Money
-        return this.amount == money.amount && this::class.equals(money::class)
+open class Money(val amount: Int, private val currency: String) {
+
+    fun times(multiplier: Int): Money {
+        return Money(amount * multiplier, currency)
     }
 
-    abstract fun times(multiplier: Int): Money
+    fun plus(addend: Money): Money {
+        return Money(this.amount + addend.amount, this.currency)
+    }
 
     fun currency(): String {
         return currency
@@ -14,11 +16,21 @@ abstract class Money(val amount: Int, private val currency: String) {
 
     companion object {
         fun dollar(amount: Int): Money {
-            return Dollar(amount, "USD")
+            return Money(amount, "USD")
         }
 
         fun franc(amount: Int): Money {
-            return Franc(amount, "CHF")
+            return Money(amount, "CHF")
         }
     }
+
+    override fun equals(other: Any?): Boolean {
+        val money = other as Money
+        return this.amount == money.amount && this.currency().equals(money.currency())
+    }
+
+    override fun toString(): String {
+        return "Money(amount=$amount, currency='$currency')"
+    }
+
 }
