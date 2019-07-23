@@ -1,17 +1,21 @@
 package main
 
-open class Money(val amount: Int, private val currency: String) {
+open class Money(val amount: Int, private val currency: String): Expression {
 
     fun times(multiplier: Int): Money {
         return Money(amount * multiplier, currency)
     }
 
-    fun plus(addend: Money): Money {
-        return Money(this.amount + addend.amount, this.currency)
+    fun plus(addend: Money): Expression {
+        return Sum(this, addend)
     }
 
     fun currency(): String {
         return currency
+    }
+
+    override fun reduce(to: String): Money {
+        return this
     }
 
     companion object {
